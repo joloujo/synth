@@ -170,6 +170,46 @@ wave += line([
     Note(freq12TET('F#3'), 6 * beat),
     ])
 
+# ---------- CRY 12-TET ----------
+
+# intermediateGliss = 0.25 * beat
+# longGliss = 2  * beat
+
+# wave += line([
+#     Note(freq12TET('F#4'), 4 * beat, intermediateGliss), 
+#     Note(freq12TET('A#4'), 4 * beat), 
+#     Note(0, 1 * beat), 
+#     Note(freq12TET('G#4'), 1 * beat, intermediateGliss),
+#     Note(freq12TET('A4'), 1 * beat, intermediateGliss),
+#     Note(freq12TET('B4'), 4 * beat, longGliss),
+#     Note(freq12TET('A#4'), 6 * beat),
+#     ])
+
+# wave += line([
+#     Note(freq12TET('F#4'), 21 * beat),
+# ])
+
+# wave += line([
+#     Note(freq12TET('F#4'), 4 * beat, intermediateGliss), 
+#     Note(freq12TET('E4'), 4 * beat), 
+#     Note(0, 1 * beat), 
+#     Note(freq12TET('D4'), 1 * beat, intermediateGliss),
+#     Note(freq12TET('D4'), 1 * beat, intermediateGliss),
+#     Note(freq12TET('D4'), 4 * beat, longGliss),
+#     Note(freq12TET('C#4'), 6 * beat),
+#     ])
+
+# wave += line([
+#     Note(freq12TET('F#4'), 4 * beat, intermediateGliss), 
+#     Note(freq12TET('E4'), 1 * beat, intermediateGliss),
+#     Note(freq12TET('C#4'), 3 * beat), 
+#     Note(0, 1 * beat), 
+#     Note(freq12TET('B3'), 1 * beat, intermediateGliss),
+#     Note(freq12TET('A3'), 1 * beat, intermediateGliss),
+#     Note(freq12TET('G#3'), 4 * beat, longGliss),
+#     Note(freq12TET('F#3'), 6 * beat),
+#     ])
+
 wave = relevel(wave, 0.50)
 
 play(wave)
