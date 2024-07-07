@@ -1,43 +1,37 @@
 import pyaudio
 import numpy as np
 import typing
-import json
-from enum import Enum
 
 rate = 44100
 samples = rate * 9
 
-class NoteTypes(Enum):
-    NOTE = 1 
-    GLISS = 2
+waveform = np.ndarray[typing.Any, np.dtype[np.float32]]
     
 class Note():
-    def __init__(self, frequency: float, duration: float, noteType: NoteTypes = NoteTypes.NOTE):
-        self.frequency: float = frequency
-        self.duration: float = duration
-        self.type: NoteTypes = noteType
+    def __init__(self, frequency: float, duration: float, glissDuration: float = 0):
+        self.freq: float = frequency
+        self.hold: float = duration - glissDuration
+        self.gliss: float = glissDuration
 
-def line(notes: list[Note]) -> np.ndarray[typing.Any, np.dtype[np.float32]]:
-    freq: np.ndarray[typing.Any, np.dtype[np.float32]] = np.zeros((0), float)
+def line(notes: list[Note]) -> waveform:
+    freq: waveform = np.zeros((0), float)
     time: float = 0
 
     for i, note in enumerate(notes):
-        new: np.ndarray[typing.Any, np.dtype[np.float32]] = np.empty((0), np.float32)
-        match note.type:
-            case NoteTypes.NOTE:
-                new = np.ones((int(note.duration * rate))) * note.frequency * 2 * np.pi / rate
-            case NoteTypes.GLISS:
-                nextNote = notes[i + 1]
-                new = np.linspace(note.frequency * 2 * np.pi / rate, nextNote.frequency * 2 * np.pi / rate, int(note.duration * rate))
+        hold: waveform = np.ones((int(note.hold * rate))) * note.freq * 2 * np.pi / rate
+        freq = np.append(freq, hold)
 
-        freq = np.append(freq, new)
-        time += note.duration        
+        if (note.gliss > 0):
+            gliss: waveform = np.linspace(note.freq * 2 * np.pi / rate, notes[i + 1].freq * 2 * np.pi / rate, int(note.gliss * rate))
+            freq = np.append(freq, gliss)
+
+        time += note.hold + note.gliss
 
     print(freq)
 
     return np.sin(np.cumsum(freq))
 
-def relevel(sound: np.ndarray[typing.Any, np.dtype[np.float32]], level: float|None = None) -> np.ndarray[typing.Any, np.dtype[np.float32]]:
+def relevel(sound: waveform, level: float|None = None) -> waveform:
     loudest = np.max(sound)
     if level:
         return sound/loudest * level
@@ -72,7 +66,7 @@ def freq12TET(note: str) -> float:
     freq = 440 * 2 ** ((noteNumber-69)/12)
     return freq
 
-def play(wave: np.ndarray[typing.Any, np.dtype[np.float32]]):
+def play(wave: waveform):
     p = pyaudio.PyAudio()
 
     stream = p.open(
@@ -86,7 +80,7 @@ def play(wave: np.ndarray[typing.Any, np.dtype[np.float32]]):
 
     stream.write(data)
 
-wave: np.ndarray[typing.Any, np.dtype[np.float32]] = np.zeros(samples, float)
+wave: waveform = np.zeros(samples, float)
 
 second = 16/15
 Second = 9/8
@@ -102,16 +96,14 @@ Seventh = 15/8
 Octave = 2
 
 wave += line([
-    Note(freq12TET('Db3') * Octave * Second, 2), 
-    Note(0, 1), 
-    Note(freq12TET('Db4') * Sixth, 1), 
-    Note(freq12TET('Db4') * Sixth, 2, NoteTypes.GLISS),
+    Note(freq12TET('Db3') * Octave * Second, 3), 
+    Note(freq12TET('Db4') * Sixth, 3, 2), 
     Note(freq12TET('Ab4') * Third, 3),
     ])
 
 wave += line([
     Note(freq12TET('Db3') * Fifth, 4), 
-    Note(freq12TET('Db3') * Fifth, 2, NoteTypes.GLISS),
+    Note(freq12TET('Db3') * Fifth, 2),
     Note(freq12TET('Ab3'), 3),
     ])
 
@@ -119,21 +111,17 @@ print(freq12TET('Db3') * Fifth)
 print(freq12TET('Ab3'))
 
 wave += line([
-    Note(freq12TET('Db3') * Third, 2), 
-    Note(0, 1), 
-    Note(freq12TET('Db3') * third, 1), 
-    Note(freq12TET('Db3') * third, 2, NoteTypes.GLISS),
+    Note(freq12TET('Db3') * Third, 3), 
+    Note(freq12TET('Db3') * third, 3, 2), 
     Note(freq12TET('Ab2') * Fifth, 3),
     ])
 
 wave += line([
-    Note(freq12TET('Db3'), 2), 
-    Note(0, 1), 
-    Note(freq12TET('Db3'), 1), 
-    Note(freq12TET('Db3'), 2, NoteTypes.GLISS),
+    Note(freq12TET('Db3'), 3), 
+    Note(freq12TET('Db3'), 3, 2),
     Note(freq12TET('Ab2'), 3),
     ])
 
-wave = relevel(wave, 0.90) * 0.25
+wave = relevel(wave, 0.50)
 
 play(wave)
