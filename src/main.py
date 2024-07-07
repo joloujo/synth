@@ -3,7 +3,8 @@ import numpy as np
 import typing
 
 rate = 44100
-samples = rate * 9
+beat = 60 / 100
+samples = round(rate * 21 * beat)
 
 waveform = np.ndarray[typing.Any, np.dtype[np.float32]]
     
@@ -18,7 +19,7 @@ def line(notes: list[Note]) -> waveform:
     time: float = 0
 
     for i, note in enumerate(notes):
-        hold: waveform = np.ones((int(note.hold * rate))) * note.freq * 2 * np.pi / rate
+        hold: waveform = np.ones((round(note.hold * rate))) * note.freq * 2 * np.pi / rate
         freq = np.append(freq, hold)
 
         if (note.gliss > 0):
@@ -26,8 +27,6 @@ def line(notes: list[Note]) -> waveform:
             freq = np.append(freq, gliss)
 
         time += note.hold + note.gliss
-
-    print(freq)
 
     return np.sin(np.cumsum(freq))
 
@@ -95,31 +94,79 @@ seventh = 9/5
 Seventh = 15/8
 Octave = 2
 
+# ---------- END OF LIKE LEAVES WE'LL FALL IN LOVE ----------
+# wave += line([
+#     Note(freq12TET('Db3') * Octave * Second, 3), 
+#     Note(freq12TET('Db4') * Sixth, 3, 2), 
+#     Note(freq12TET('Ab4') * Third, 3),
+#     ])
+
+# wave += line([
+#     Note(freq12TET('Db3') * Fifth, 4), 
+#     Note(freq12TET('Db3') * Fifth, 2),
+#     Note(freq12TET('Ab3'), 3),
+#     ])
+
+# print(freq12TET('Db3') * Fifth)
+# print(freq12TET('Ab3'))
+
+# wave += line([
+#     Note(freq12TET('Db3') * Third, 3), 
+#     Note(freq12TET('Db3') * third, 3, 2), 
+#     Note(freq12TET('Ab2') * Fifth, 3),
+#     ])
+
+# wave += line([
+#     Note(freq12TET('Db3'), 3), 
+#     Note(freq12TET('Db3'), 3, 2),
+#     Note(freq12TET('Ab2'), 3),
+#     ])
+
+# ---------- CRY ----------
 wave += line([
-    Note(freq12TET('Db3') * Octave * Second, 3), 
-    Note(freq12TET('Db4') * Sixth, 3, 2), 
-    Note(freq12TET('Ab4') * Third, 3),
+    Note(freq12TET('F#4'), 4 * beat), 
+    Note(freq12TET('F#4') * Third, 4 * beat), 
+    Note(0, 1 * beat),
+    Note(freq12TET('B3') * Sixth, 1 * beat),
+    Note(freq12TET('D4') * Fifth, 1 * beat),
+    Note(freq12TET('G#4') * third, 3 * beat),
+    Note(0, 1 * beat),
+    Note(freq12TET('F#4') * Third, 6 * beat),
     ])
 
 wave += line([
-    Note(freq12TET('Db3') * Fifth, 4), 
-    Note(freq12TET('Db3') * Fifth, 2),
-    Note(freq12TET('Ab3'), 3),
-    ])
+    Note(freq12TET('F#4'), 9 * beat),
+    Note(freq12TET('B3') * Fifth, 1 * beat),
+    Note(freq12TET('D4') * Third, 1 * beat),
+    Note(freq12TET('G#3') * seventh, 4 * beat),
+    Note(freq12TET('F#4'), 6 * beat),
+])
 
-print(freq12TET('Db3') * Fifth)
-print(freq12TET('Ab3'))
-
-wave += line([
-    Note(freq12TET('Db3') * Third, 3), 
-    Note(freq12TET('Db3') * third, 3, 2), 
-    Note(freq12TET('Ab2') * Fifth, 3),
-    ])
+print(freq12TET('F#4'), freq12TET('B3') * Fifth, freq12TET('D4') * Third, freq12TET('G#3') * seventh, freq12TET('F#4'))
 
 wave += line([
-    Note(freq12TET('Db3'), 3), 
-    Note(freq12TET('Db3'), 3, 2),
-    Note(freq12TET('Ab2'), 3),
+    Note(freq12TET('F#4'), 4 * beat), 
+    Note(freq12TET('F#3') * seventh, 4 * beat), 
+    Note(0, 1 * beat),
+    Note(freq12TET('B3') * third, 1 * beat),
+    Note(freq12TET('D4'), 1 * beat),
+    Note(freq12TET('G#3') * tritone, 3 * beat),
+    Note(0, 1 * beat),
+    Note(freq12TET('F#3') * Fifth, 6 * beat),
+    ])
+
+print(freq12TET('B3') * third, freq12TET('D4'), freq12TET('G#3') * tritone)
+
+wave += line([
+    Note(freq12TET('F#4'), 4 * beat), 
+    Note(freq12TET('F#3') * seventh, 1 * beat),
+    Note(freq12TET('F#3') * Fifth, 3 * beat), 
+    Note(0, 1 * beat),
+    Note(freq12TET('B3'), 1 * beat),
+    Note(freq12TET('D3') * Fifth, 1 * beat),
+    Note(freq12TET('G#3'), 3 * beat),
+    Note(0, 1 * beat),
+    Note(freq12TET('F#3'), 6 * beat),
     ])
 
 wave = relevel(wave, 0.50)
