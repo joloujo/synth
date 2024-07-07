@@ -123,49 +123,50 @@ Octave = 2
 #     ])
 
 # ---------- CRY ----------
+
+intermediateGliss = 0.25 * beat
+longGliss = 2  * beat
+
 wave += line([
-    Note(freq12TET('F#4'), 4 * beat), 
+    Note(freq12TET('F#4'), 4 * beat, intermediateGliss), 
     Note(freq12TET('F#4') * Third, 4 * beat), 
-    Note(0, 1 * beat),
-    Note(freq12TET('B3') * Sixth, 1 * beat),
-    Note(freq12TET('D4') * Fifth, 1 * beat),
-    Note(freq12TET('G#4') * third, 3 * beat),
-    Note(0, 1 * beat),
+    Note(0, 1 * beat), 
+    Note(freq12TET('B3') * Sixth, 1 * beat, intermediateGliss),
+    Note(freq12TET('D4') * Fifth, 1 * beat, intermediateGliss),
+    Note(freq12TET('G#4') * third, 4 * beat, longGliss),
     Note(freq12TET('F#4') * Third, 6 * beat),
     ])
 
 wave += line([
-    Note(freq12TET('F#4'), 9 * beat),
-    Note(freq12TET('B3') * Fifth, 1 * beat),
-    Note(freq12TET('D4') * Third, 1 * beat),
-    Note(freq12TET('G#3') * seventh, 4 * beat),
+    Note(freq12TET('F#4'), 9 * beat, intermediateGliss * intermediateGliss),
+    Note(freq12TET('B3') * Fifth, 1 * beat, intermediateGliss),
+    Note(freq12TET('D4') * Third, 1 * beat, intermediateGliss),
+    Note(freq12TET('G#3') * seventh, 4 * beat, longGliss),
     Note(freq12TET('F#4'), 6 * beat),
 ])
 
 print(freq12TET('F#4'), freq12TET('B3') * Fifth, freq12TET('D4') * Third, freq12TET('G#3') * seventh, freq12TET('F#4'))
 
 wave += line([
-    Note(freq12TET('F#4'), 4 * beat), 
+    Note(freq12TET('F#4'), 4 * beat, intermediateGliss), 
     Note(freq12TET('F#3') * seventh, 4 * beat), 
-    Note(0, 1 * beat),
-    Note(freq12TET('B3') * third, 1 * beat),
-    Note(freq12TET('D4'), 1 * beat),
-    Note(freq12TET('G#3') * tritone, 3 * beat),
-    Note(0, 1 * beat),
+    Note(0, 1 * beat), 
+    Note(freq12TET('B3') * third, 1 * beat, intermediateGliss),
+    Note(freq12TET('D4'), 1 * beat, intermediateGliss),
+    Note(freq12TET('G#3') * tritone, 4 * beat, longGliss),
     Note(freq12TET('F#3') * Fifth, 6 * beat),
     ])
 
 print(freq12TET('B3') * third, freq12TET('D4'), freq12TET('G#3') * tritone)
 
 wave += line([
-    Note(freq12TET('F#4'), 4 * beat), 
-    Note(freq12TET('F#3') * seventh, 1 * beat),
+    Note(freq12TET('F#4'), 4 * beat, intermediateGliss), 
+    Note(freq12TET('F#3') * seventh, 1 * beat, intermediateGliss),
     Note(freq12TET('F#3') * Fifth, 3 * beat), 
-    Note(0, 1 * beat),
-    Note(freq12TET('B3'), 1 * beat),
-    Note(freq12TET('D3') * Fifth, 1 * beat),
-    Note(freq12TET('G#3'), 3 * beat),
-    Note(0, 1 * beat),
+    Note(0, 1 * beat), 
+    Note(freq12TET('B3'), 1 * beat, intermediateGliss),
+    Note(freq12TET('D3') * Fifth, 1 * beat, intermediateGliss),
+    Note(freq12TET('G#3'), 4 * beat, longGliss),
     Note(freq12TET('F#3'), 6 * beat),
     ])
 
