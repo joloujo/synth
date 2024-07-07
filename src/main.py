@@ -138,7 +138,7 @@ wave += line([
     ])
 
 wave += line([
-    Note(freq12TET('F#4'), 9 * beat, intermediateGliss * intermediateGliss),
+    Note(freq12TET('F#4'), 9 * beat, intermediateGliss),
     Note(freq12TET('B3') * Fifth, 1 * beat, intermediateGliss),
     Note(freq12TET('D4') * Third, 1 * beat, intermediateGliss),
     Note(freq12TET('G#3') * seventh, 4 * beat, longGliss),
