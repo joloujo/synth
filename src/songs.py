@@ -108,3 +108,17 @@ cry12TET += s.line([
     Note(s.freq12TET('G#3'), 4 * beat, longGliss),
     Note(s.freq12TET('F#3'), 6 * beat),
     ])
+
+# ---------- Chord Slide ----------
+chord: list[float] = [
+    s.freq12TET('C4'),
+    s.freq12TET('C4') * Ratios.Third,
+    s.freq12TET('C4') * Ratios.Fifth,
+]
+interval: float = Ratios.Fifth
+chordSlide: waveform = np.zeros(round(6 * rate), float)
+for note in chord:
+    chordSlide += s.line([
+    Note(note, 4, 2), 
+    Note(note * interval, 2), 
+    ])
