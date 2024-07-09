@@ -109,7 +109,7 @@ cry12TET += s.line([
     Note(s.freq12TET('F#3'), 6 * beat),
     ])
 
-# ---------- Chord Slide ----------
+# ---------- After You're Gone ----------
 chord: list[float] = [
     s.freq12TET('C4'),
     s.freq12TET('C4') * Ratios.Third,
@@ -122,3 +122,32 @@ for note in chord:
     Note(note, 4, 2), 
     Note(note * interval, 2), 
     ])
+
+# ---------- After You're Gone 12-TET ----------
+beat = 60 / 100
+intermediateGliss: float = 0.25 * beat
+afterYoureGone: waveform = np.zeros(round(6 * beat * rate), float)
+afterYoureGone += s.line([
+    Note(s.freq12TET('Eb5'), 2/3 * beat),
+    Note(s.freq12TET('Eb5'), 1/3 * beat),
+    Note(s.freq12TET('Eb5'), 2/3 * beat),
+    Note(s.freq12TET('G5'), (1/3 + 4) * beat), 
+    ]) / 4
+afterYoureGone += s.line([
+    Note(s.freq12TET('G4'), 2/3 * beat),
+    Note(s.freq12TET('Bb4'), 1/3 * beat),
+    Note(s.freq12TET('C5'), 2/3 * beat),
+    Note(s.freq12TET('D5'), (1/3 + 4) * beat), 
+    ])
+afterYoureGone += s.line([
+    Note(s.freq12TET('Bb3'), 2/3 * beat),
+    Note(s.freq12TET('G3'), 1/3 * beat),
+    Note(s.freq12TET('G3'), 2/3 * beat),
+    Note(s.freq12TET('Bb3'), (1/3 + 4) * beat), 
+    ]) / 3
+afterYoureGone += s.line([
+    Note(s.freq12TET('Eb3'), 2/3 * beat),
+    Note(s.freq12TET('Eb3'), 1/3 * beat),
+    Note(s.freq12TET('Eb3'), 2/3 * beat),
+    Note(s.freq12TET('Eb3'), (1/3 + 4) * beat), 
+    ]) / 2
