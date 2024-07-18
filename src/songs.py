@@ -151,3 +151,27 @@ afterYoureGone += s.line([
     Note(s.freq12TET('Eb3'), 2/3 * beat),
     Note(s.freq12TET('Eb3'), (1/3 + 4) * beat), 
     ]) / 2
+
+# ---------- Heart Of My Heart ----------
+beat = 60 / 120
+intermediateGliss: float = 0.25 * beat
+longGliss = 1  * beat
+heart: waveform = np.zeros(round(12 * beat * rate), float)
+heart += s.line([
+    Note(s.freq12TET('Db3') * Ratios.Seventh, 6 * beat, longGliss),
+    Note(s.freq12TET('Ab3') * Ratios.Third, 6 * beat), 
+    ]) / 4
+heart += s.line([
+    Note(s.freq12TET('Db3') * Ratios.Fifth, 6 * beat, longGliss),
+    Note(s.freq12TET('Ab3'), 6 * beat), 
+    ])
+heart += s.line([
+    Note(s.freq12TET('Db3') * Ratios.Third, 6 * beat, longGliss),
+    Note(s.freq12TET('Ab2') * Ratios.Fifth, 6 * beat), 
+    ]) / 3
+heart += s.line([
+    Note(s.freq12TET('Db3'), 3 * beat, intermediateGliss),
+    Note(s.freq12TET('Db3') * Ratios.Second, 1 * beat, intermediateGliss),
+    Note(s.freq12TET('Db3'), 2 * beat, longGliss),
+    Note(s.freq12TET('Ab2'), 6 * beat), 
+    ]) / 2
