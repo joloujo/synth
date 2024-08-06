@@ -175,3 +175,42 @@ heart += s.line([
     Note(s.freq12TET('Db3'), 2 * beat, longGliss),
     Note(s.freq12TET('Ab2'), 6 * beat), 
     ]) / 2
+
+# ---------- One Moment in Time ----------
+beat = 60 / 60
+shortGliss: float = 0.25 * beat
+oneMoment: waveform = np.zeros(round(8 * beat * rate), float)
+oneMoment += s.line([
+    Note(s.freq12TET('Db4') * Ratios.Sixth, 2 * beat),
+    Note(s.freq12TET('Bb3') * Ratios.seventh, 2/3 * beat),
+    Note(s.freq12TET('Db4') * Ratios.Sixth, 2/3 * beat),
+    Note(s.freq12TET('Db5'), 2/3 * beat),
+    Note(s.freq12TET('Eb4') * Ratios.third, 2 * beat, shortGliss),
+    Note(s.freq12TET('Gb4'), 2 * beat), 
+    ]) / 4
+oneMoment += s.line([
+    Note(s.freq12TET('Db4') * Ratios.Fifth, 1 * beat, shortGliss),
+    Note(s.freq12TET('Db4') * Ratios.Fourth, 1 * beat),
+    Note(s.freq12TET('Bb3') * Ratios.Fifth, 2/3 * beat),
+    Note(s.freq12TET('Db4') * Ratios.Third, 2/3 * beat),
+    Note(s.freq12TET('Db4') * Ratios.Fifth, 2/3 * beat),
+    Note(s.freq12TET('Eb4') * Ratios.Second, 1 * beat, shortGliss),
+    Note(s.freq12TET('Eb4'), 1 * beat, shortGliss),
+    Note(s.freq12TET('Gb3') * Ratios.seventh, 2 * beat),
+    ])
+oneMoment += s.line([
+    Note(s.freq12TET('Db4'), 2 * beat),
+    Note(s.freq12TET('Bb3') * Ratios.third, 2/3 * beat),
+    Note(s.freq12TET('Db4'), 2/3 * beat),
+    Note(s.freq12TET('Db3') * Ratios.Sixth, 2/3 * beat),
+    Note(s.freq12TET('Eb3') * Ratios.Fifth, 2 * beat, shortGliss),
+    Note(s.freq12TET('Gb3') * Ratios.Third, 2 * beat), 
+    ]) / 3
+oneMoment += s.line([
+    Note(s.freq12TET('Db3') * Ratios.Third, 2 * beat),
+    Note(s.freq12TET('Bb3'), 2/3 * beat),
+    Note(s.freq12TET('Db3') * Ratios.Fifth, 2/3 * beat),
+    Note(s.freq12TET('Db3') * Ratios.Third, 2/3 * beat),
+    Note(s.freq12TET('Eb3'), 2 * beat, shortGliss),
+    Note(s.freq12TET('Gb2') * Ratios.Fifth, 2 * beat), 
+    ]) / 2
