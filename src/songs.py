@@ -4,29 +4,36 @@ import numpy as np
 rate: int = 44100
 s = Synth(rate)
 
-# ---------- END OF LIKE LEAVES WE'LL FALL IN LOVE ----------
-likeLeaves: waveform = np.zeros(9 * rate, float)
+# ---------- LIKE LEAVES WE'LL FALL IN LOVE ----------
+beat = 60 / 75
+intermediateGliss = 0.25 * beat
+longGliss = 1 * beat
+
+likeLeaves: waveform = np.zeros(int(15 * rate * beat), float)
 likeLeaves += s.line([
-    Note(s.freq12TET('Db3') * Ratios.Octave * Ratios.Second, 3), 
-    Note(s.freq12TET('Db4') * Ratios.Sixth, 3, 2), 
-    Note(s.freq12TET('Ab4') * Ratios.Third, 3),
+    Note(s.freq12TET('Ab3') * Ratios.Fifth, 3 * beat, intermediateGliss), 
+    Note(s.freq12TET('Db3') * Ratios.Octave * Ratios.Second, 3 * beat, intermediateGliss), 
+    Note(s.freq12TET('Db3') * Ratios.Sixth, 3 * beat, longGliss), 
+    Note(s.freq12TET('Ab3') * Ratios.Third, 6 * beat),
     ])
 likeLeaves += s.line([
-    Note(s.freq12TET('Db3') * Ratios.Fifth, 4), 
-    Note(s.freq12TET('Db3') * Ratios.Fifth, 2),
-    Note(s.freq12TET('Ab3'), 3),
+    Note(s.freq12TET('Ab3'), 3 * beat, intermediateGliss), 
+    Note(s.freq12TET('Db3') * Ratios.Fifth, 6 * beat, longGliss), 
+    Note(s.freq12TET('Ab3'), 6 * beat),
     ])
 # print(s.freq12TET('Db3') * Ratios.Fifth)
 # print(s.freq12TET('Ab3'))
 likeLeaves += s.line([
-    Note(s.freq12TET('Db3') * Ratios.Third, 3), 
-    Note(s.freq12TET('Db3') * Ratios.third, 3, 2), 
-    Note(s.freq12TET('Ab2') * Ratios.Fifth, 3),
+    Note(s.freq12TET('Ab2') * Ratios.Seventh, 3 * beat, intermediateGliss), 
+    Note(s.freq12TET('Db3') * Ratios.Third, 3 * beat, intermediateGliss), 
+    Note(s.freq12TET('Db3') * Ratios.third, 3 * beat, longGliss), 
+    Note(s.freq12TET('Ab2') * Ratios.Fifth, 6 * beat),
     ])
 likeLeaves += s.line([
-    Note(s.freq12TET('Db3'), 3), 
-    Note(s.freq12TET('Db3'), 3, 2),
-    Note(s.freq12TET('Ab2'), 3),
+    Note(s.freq12TET('Ab2') * Ratios.Third, 3 * beat, intermediateGliss), 
+    Note(s.freq12TET('Db3'), 3 * beat, intermediateGliss), 
+    Note(s.freq12TET('Db3'), 3 * beat, longGliss),
+    Note(s.freq12TET('Ab2'), 6 * beat),
     ])
 
 # ---------- CRY JUST INTONATION ----------
