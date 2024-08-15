@@ -221,3 +221,77 @@ oneMoment += s.line([
     Note(s.freq12TET('Eb3'), 2 * beat, shortGliss),
     Note(s.freq12TET('Gb2') * Ratios.Fifth, 2 * beat), 
     ]) / 2
+
+# ---------- Lonely For You Am I ----------
+beat = 60 / 120
+lonelyForYou: waveform = np.zeros(round(8 * 3 * beat * rate), float)
+# lonelyForYou += s.line([
+#     Note(s.freq12TET('F3') * Ratios.Sixth, 1 * beat),
+#     Note(s.freq12TET('Ab3') * Ratios.Fifth, 1 * beat),
+#     Note(s.freq12TET('D4') * Ratios.third, 1 * beat),
+#     Note(s.freq12TET('G3') * Ratios.Fifth, 1 * beat),
+#     Note(s.freq12TET('Eb4') * Ratios.Third, 1 * beat),
+#     Note(s.freq12TET('G3') * Ratios.seventh, 1 * beat),
+#     Note(s.freq12TET('C4') * Ratios.third, 2 * beat),
+#     Note(s.freq12TET('C4') * Ratios.Fifth, 1 * beat),
+#     Note(s.freq12TET('F4') * Ratios.Second, 3 * beat),
+#     Note(s.freq12TET('F3') * Ratios.Sixth, 1 * beat),
+#     Note(s.freq12TET('Ab3') * Ratios.Fifth, 1 * beat),
+#     Note(s.freq12TET('D4') * Ratios.third, 1 * beat),
+#     Note(s.freq12TET('F3') * Ratios.seventh, 2 * beat),
+#     Note(s.freq12TET('Bb3') * Ratios.Third, 1 * beat),
+#     Note(s.freq12TET('C4') * Ratios.Third, 6 * beat),
+#     ]) / 4
+lonelyForYou += s.line([
+    Note(s.freq12TET('F'), 1 * beat),
+    Note(s.freq12TET('Ab'), 1 * beat),
+    Note(s.freq12TET('D'), 1 * beat),
+    Note(s.freq12TET('G'), 1 * beat),
+    Note(s.freq12TET('Eb'), 1 * beat),
+    Note(s.freq12TET('G'), 1 * beat),
+    Note(s.freq12TET('C'), 2 * beat),
+    Note(s.freq12TET('C'), 1 * beat),
+    Note(s.freq12TET('F'), 3 * beat),
+    Note(s.freq12TET('F'), 1 * beat),
+    Note(s.freq12TET('Ab'), 1 * beat),
+    Note(s.freq12TET('D'), 1 * beat),
+    Note(s.freq12TET('F'), 2 * beat),
+    Note(s.freq12TET('Bb'), 1 * beat),
+    Note(s.freq12TET('C'), 6 * beat),
+    ])
+# lonelyForYou += s.line([
+#     Note(s.freq12TET('F'), 1 * beat),
+#     Note(s.freq12TET('Ab'), 1 * beat),
+#     Note(s.freq12TET('D'), 1 * beat),
+#     Note(s.freq12TET('G'), 1 * beat),
+#     Note(s.freq12TET('Eb'), 1 * beat),
+#     Note(s.freq12TET('G'), 1 * beat),
+#     Note(s.freq12TET('C'), 2 * beat),
+#     Note(s.freq12TET('C'), 1 * beat),
+#     Note(s.freq12TET('F'), 3 * beat),
+#     Note(s.freq12TET('F'), 1 * beat),
+#     Note(s.freq12TET('Ab'), 1 * beat),
+#     Note(s.freq12TET('D'), 1 * beat),
+#     Note(s.freq12TET('F'), 2 * beat),
+#     Note(s.freq12TET('Bb'), 1 * beat),
+#     Note(s.freq12TET('C'), 6 * beat),
+#     ]) / 3
+# lonelyForYou += s.line([
+#     Note(s.freq12TET('F'), 1 * beat),
+#     Note(s.freq12TET('Ab'), 1 * beat),
+#     Note(s.freq12TET('D'), 1 * beat),
+#     Note(s.freq12TET('G'), 1 * beat),
+#     Note(s.freq12TET('Eb'), 1 * beat),
+#     Note(s.freq12TET('G'), 1 * beat),
+#     Note(s.freq12TET('C'), 2 * beat),
+#     Note(s.freq12TET('C'), 1 * beat),
+#     Note(s.freq12TET('F'), 3 * beat),
+#     Note(s.freq12TET('F'), 1 * beat),
+#     Note(s.freq12TET('Ab'), 1 * beat),
+#     Note(s.freq12TET('D'), 1 * beat),
+#     Note(s.freq12TET('F'), 2 * beat),
+#     Note(s.freq12TET('Bb'), 1 * beat),
+#     Note(s.freq12TET('C'), 6 * beat),
+#     ]) / 2
+
+s.play(lonelyForYou)
